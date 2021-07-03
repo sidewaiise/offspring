@@ -68,13 +68,9 @@ func Test(t *testing.T) {
 		),
 	}
 
-	var result = make(genetic.Population, 0)
 	children := p.Reproduce(*generations, *maxN)
-	for _, c := range children {
-		result = append(result, c)
-	}
 
-	fittest := result.GetFittest()
+	fittest := children.GetFittest()
 
 	fmt.Printf("Limmer Baby: %s\n\n", fittest.Label())
 	for _, tr := range fittest.Traits() {
@@ -86,7 +82,7 @@ func Test(t *testing.T) {
 
 	fmt.Print("All candidate summary:\n\n")
 
-	for _, r := range result {
+	for _, r := range children {
 		fmt.Printf("Name: %s, Fitness: %f\n", r.Label(), r.Fitness())
 	}
 

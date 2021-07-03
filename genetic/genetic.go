@@ -35,7 +35,7 @@ func (p Population) Reproduce(generations int, n int) Population {
 
 	newPop := make(Population, 0)
 	for i := 0; i < n; i++ {
-		child := p[0].Offspring(p[1], i)
+		child := p[0].Offspring(p[1], generations, i)
 		newPop = append(newPop, child)
 	}
 

@@ -17,9 +17,9 @@ func NewPhenotypeParent(name string, genes Genes, genome *Genome) *Phenotype {
 	return &h
 }
 
-func NewPhenotypeChild(parents []Chromosome, genome *Genome, i int) *Phenotype {
+func NewPhenotypeChild(parents []Chromosome, genome *Genome, g int, i int) *Phenotype {
 	h := Phenotype{
-		Name:    parents[0].Label() + "_" + parents[1].Label() + "_child_" + fmt.Sprintf("%d", i),
+		Name:    fmt.Sprintf("gen_%d_child_%d", g, i),
 		parents: parents,
 		genome:  genome,
 	}
@@ -66,8 +66,8 @@ func (h *Phenotype) Traits() []string {
 	return traits
 }
 
-func (h *Phenotype) Offspring(spouse Chromosome, i int) Chromosome {
-	return NewPhenotypeChild([]Chromosome{h, spouse}, h.genome, i)
+func (h *Phenotype) Offspring(spouse Chromosome, g int, i int) Chromosome {
+	return NewPhenotypeChild([]Chromosome{h, spouse}, h.genome, g, i)
 }
 
 // Fitness adds up for each gene that is active
