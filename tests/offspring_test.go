@@ -1,9 +1,8 @@
 package main
 
 import (
+	"flag"
 	"fmt"
-	"math"
-	"math/rand"
 	"testing"
 
 	"github.com/sidewaiise/offspring/chromosomes"
@@ -11,44 +10,66 @@ import (
 	"github.com/sidewaiise/offspring/genetic"
 )
 
+var (
+	maxN        = flag.Int("maxN", 2, "Max number of children")
+	generations = flag.Int("generations", 1, "Max number of generations")
+)
+
 func Test(t *testing.T) {
+	flag.Parse()
+
 	jamesGenes := genes.NewGenericHumanGenes(map[string]bool{
-		"strong_muscles":       true,
-		"strong_memory":        true,
-		"distracted":           true,
-		"focused":              true,
-		"adaptive":             true,
-		"introverted":          true,
-		"gender_chromosome_XX": true,
-		"good_looking":         true,
-		"rambles":              true,
+		"strong_muscles": true,
+		"slow_muscles":   true,
+		"strong_memory":  true,
+		"distracted":     true,
+		"focused":        true,
+		"adaptive":       true,
+		"introverted":    true,
+		"healthy_haeart": true,
+		"curiosity":      true,
+		"nature_lover":   true,
+		"urban_lover":    true,
+		"scientific":     true,
+		"creative":       true,
+		"left_wing":      true,
+		"capitalist":     true,
+		"thrillseeker":   true,
+		"explorer":       true,
+		"good_looking":   true,
+		"rambles":        true,
 	})
 
 	aymeGenes := genes.NewGenericHumanGenes(map[string]bool{
-		"fast_muscles": true,
-		"weak_memory":  true,
-		"distracted":   true,
-		"rigid":        true,
-		"extroverted":  true,
-		"explorer":     true,
-		"good_looking": true,
+		"fast_muscles":   true,
+		"weak_memory":    true,
+		"distracted":     true,
+		"rigid":          true,
+		"extroverted":    true,
+		"healthy_haeart": true,
+		"curiosity":      true,
+		"nature_lover":   true,
+		"organised":      true,
+		"thrillseeker":   true,
+		"explorer":       true,
+		"good_looking":   true,
 	})
 
 	p := genetic.Population{
 		chromosomes.NewPhenotypeParent(
 			"James",
 			jamesGenes,
-			&genes.GenericHuman,
+			&genes.GenericHumanGenome,
 		),
 		chromosomes.NewPhenotypeParent(
 			"Ayme",
 			aymeGenes,
-			&genes.GenericHuman,
+			&genes.GenericHumanGenome,
 		),
 	}
 
 	var result = make(genetic.Population, 0)
-	children := p.Reproduce(1, int(math.Round(rand.Float64()*10)))
+	children := p.Reproduce(*generations, *maxN)
 	for _, c := range children {
 		result = append(result, c)
 	}

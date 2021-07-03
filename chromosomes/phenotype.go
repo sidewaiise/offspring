@@ -66,8 +66,8 @@ func (h *Phenotype) Traits() []string {
 	return traits
 }
 
-func (h *Phenotype) Offspring(spouse Chromosome, genome *Genome, i int) Chromosome {
-	return NewPhenotypeChild([]Chromosome{h, spouse}, genome, i)
+func (h *Phenotype) Offspring(spouse Chromosome, i int) Chromosome {
+	return NewPhenotypeChild([]Chromosome{h, spouse}, h.genome, i)
 }
 
 // Fitness adds up for each gene that is active

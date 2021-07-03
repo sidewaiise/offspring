@@ -7,5 +7,5 @@ I was playing around with genetic algorithms and wrote this library one night. I
 Try out
 
 ```
-go test ./tests -v
+go clean -testcache && go test ./tests -v -maxN=2 -generations=1
 ```

@@ -40,7 +40,7 @@ type Chromosome interface {
 	Label() string
 	Genes() map[string]bool
 	Traits() []string
-	Offspring(spouse Chromosome, genome *Genome, i int) Chromosome
+	Offspring(spouse Chromosome, i int) Chromosome
 
 	// Genetic algo functions
 	Fitness() float32

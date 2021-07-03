@@ -4,7 +4,7 @@ import (
 	"github.com/sidewaiise/offspring/chromosomes"
 )
 
-var GenericHuman = chromosomes.Genome{
+var GenericHumanGenome = chromosomes.Genome{
 	"strong_muscles": {
 		Desc:  "Strong muscles",
 		Score: 1,
@@ -202,7 +202,7 @@ var GenericHuman = chromosomes.Genome{
 func NewGenericHumanGenes(keys map[string]bool) chromosomes.Genes {
 	genes := make(map[string]bool, 0)
 
-	for name := range GenericHuman {
+	for name := range GenericHumanGenome {
 		if !keys[name] {
 			genes[name] = false
 			continue

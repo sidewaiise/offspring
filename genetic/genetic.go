@@ -5,7 +5,6 @@ import (
 	"sort"
 
 	"github.com/sidewaiise/offspring/chromosomes"
-	"github.com/sidewaiise/offspring/genes"
 )
 
 // Population is a collection
@@ -36,7 +35,7 @@ func (p Population) Reproduce(generations int, n int) Population {
 
 	newPop := make(Population, 0)
 	for i := 0; i < n; i++ {
-		child := p[0].Offspring(p[1], &genes.GenericHuman, i)
+		child := p[0].Offspring(p[1], i)
 		newPop = append(newPop, child)
 	}
 
