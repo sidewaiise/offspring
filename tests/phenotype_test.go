@@ -8,6 +8,7 @@ import (
 
 	"github.com/sidewaiise/offspring/genes/phenotypes"
 	"github.com/sidewaiise/offspring/genetic"
+	"github.com/sidewaiise/offspring/genetic/genome"
 )
 
 var (
@@ -18,7 +19,7 @@ var (
 func TestPhenotypes(t *testing.T) {
 	flag.Parse()
 
-	jamesGenes := phenotypes.NewHumanTraits([]uint64{
+	jamesGenes := genome.NewGenes(&phenotypes.HumanAnecdotalPhenome, []uint64{
 		phenotypes.StrongMusclesTrait,
 		phenotypes.StrongMemoryTrait,
 		phenotypes.DistractedTrait,
@@ -39,7 +40,7 @@ func TestPhenotypes(t *testing.T) {
 		phenotypes.RamblingSpeechTrait,
 	})
 
-	aymeGenes := phenotypes.NewHumanTraits([]uint64{
+	aymeGenes := genome.NewGenes(&phenotypes.HumanAnecdotalPhenome, []uint64{
 		phenotypes.FastTwitchMusclesTrait,
 		phenotypes.WeakMemoryTrait,
 		phenotypes.StrongMemoryTrait,
@@ -124,7 +125,6 @@ func TestPhenotypes(t *testing.T) {
 			}
 
 			children, err := p.Reproduce(test.generations, test.children)
-
 			duration := time.Since(start)
 
 			fmt.Println("---------------------------")

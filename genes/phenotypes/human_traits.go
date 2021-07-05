@@ -1,7 +1,7 @@
 package phenotypes
 
 import (
-	genetic "github.com/sidewaiise/offspring/genetic/genome"
+	"github.com/sidewaiise/offspring/genetic/genome"
 )
 
 const (
@@ -60,227 +60,217 @@ const (
 	ComedyTrait
 )
 
-var HumanAnecdotalPhenome = genetic.Genome{
-	StrongMusclesTrait: genetic.Gene{
+var HumanAnecdotalPhenome = genome.Genome{
+	StrongMusclesTrait: genome.Gene{
 		Desc:  "Strong muscles",
 		Score: 1,
 	},
-	WeakMusclesTrait: genetic.Gene{
+	WeakMusclesTrait: genome.Gene{
 		Desc:  "Weak muscles",
 		Score: -1,
 	},
-	FastTwitchMusclesTrait: genetic.Gene{
+	FastTwitchMusclesTrait: genome.Gene{
 		Desc:  "Fast twitch muscles",
 		Score: 1,
 	},
-	SlowTwitchMusclesTrait: genetic.Gene{
+	SlowTwitchMusclesTrait: genome.Gene{
 		Desc:  "Slow twitch muscles",
 		Score: 1,
 	},
-	EnduranceTrait: genetic.Gene{
+	EnduranceTrait: genome.Gene{
 		Desc:  "Good endurance",
 		Score: 1,
 	},
-	StrongMemoryTrait: genetic.Gene{
+	StrongMemoryTrait: genome.Gene{
 		Desc:  "Good memory",
 		Score: 1,
 	},
-	WeakMemoryTrait: genetic.Gene{
+	WeakMemoryTrait: genome.Gene{
 		Desc:  "Trouble with gender identity",
 		Score: 0,
 	},
-	DistractedTrait: genetic.Gene{
+	DistractedTrait: genome.Gene{
 		Desc:  "Easily distracted",
 		Score: -1,
 	},
-	FocusedTrait: genetic.Gene{
+	FocusedTrait: genome.Gene{
 		Desc:  "Easily distracted",
 		Score: 1,
 	},
-	AdaptiveTrait: genetic.Gene{
+	AdaptiveTrait: genome.Gene{
 		Desc:  "Adapts easily",
 		Score: 1,
 	},
-	UnadaptiveTrait: genetic.Gene{
+	UnadaptiveTrait: genome.Gene{
 		Desc:  "Does not adapt easily",
 		Score: 1,
 	},
-	IntrovertedTrait: genetic.Gene{
+	IntrovertedTrait: genome.Gene{
 		Desc:  "Introverted, takes less social interaction for stimulation",
 		Score: 1,
 	},
-	ExtrovertedTrait: genetic.Gene{
+	ExtrovertedTrait: genome.Gene{
 		Desc:  "Extraverted, takes more social interaction for stimulation",
 		Score: 1,
 	},
-	GoodHeartTrait: genetic.Gene{
+	GoodHeartTrait: genome.Gene{
 		Desc:  "Very healthy heart",
 		Score: 1,
 	},
-	BadHeartTrait: genetic.Gene{
+	BadHeartTrait: genome.Gene{
 		Desc:  "Heart problems",
 		Score: -1,
 	},
-	CuriousTrait: genetic.Gene{
+	CuriousTrait: genome.Gene{
 		Desc:  "Curious mind",
 		Score: 1,
 	},
-	DestructiveTrait: genetic.Gene{
+	DestructiveTrait: genome.Gene{
 		Desc:  "Destructive mindset",
 		Score: -1,
 	},
-	NatureLoverTrait: genetic.Gene{
+	NatureLoverTrait: genome.Gene{
 		Desc:  "Loves animals and nature",
 		Score: 1,
 	},
-	CityLoverTrait: genetic.Gene{
+	CityLoverTrait: genome.Gene{
 		Desc:  "Loves big cities",
 		Score: 1,
 	},
-	KindnessTrait: genetic.Gene{
+	KindnessTrait: genome.Gene{
 		Desc:  "Kind to others",
 		Score: 1,
 	},
-	MeanTrait: genetic.Gene{
+	MeanTrait: genome.Gene{
 		Desc:  "Mean to others",
 		Score: -1.5,
 	},
-	ScientificTrait: genetic.Gene{
+	ScientificTrait: genome.Gene{
 		Desc:  "Is scientific",
 		Score: 1,
 	},
-	NeuroticTrait: genetic.Gene{
+	NeuroticTrait: genome.Gene{
 		Desc:  "Neurotic",
 		Score: -1,
 	},
-	PsychoticTrait: genetic.Gene{
+	PsychoticTrait: genome.Gene{
 		Desc:  "Psychotic",
 		Score: -1,
 	},
-	OCDTrait: genetic.Gene{
+	OCDTrait: genome.Gene{
 		Desc:  "Obsessive compulsive",
 		Score: -1,
 	},
-	AutismTrait: genetic.Gene{
+	AutismTrait: genome.Gene{
 		Desc:  "Autistic",
 		Score: -1,
 	},
-	AnxietyTrait: genetic.Gene{
+	AnxietyTrait: genome.Gene{
 		Desc:  "Has anxiety",
 		Score: -1,
 	},
-	CreativityTrait: genetic.Gene{
+	CreativityTrait: genome.Gene{
 		Desc:  "Is creative",
 		Score: 1,
 	},
-	OrganisedTrait: genetic.Gene{
+	OrganisedTrait: genome.Gene{
 		Desc:  "Is organised",
 		Score: 1,
 	},
-	ConfusedGenderTrait: genetic.Gene{
+	ConfusedGenderTrait: genome.Gene{
 		Desc:  "Trouble with gender identity",
 		Score: -1,
 	},
-	HomosexualTrait: genetic.Gene{
+	HomosexualTrait: genome.Gene{
 		Desc:  "Non-hetero sexual preference",
 		Score: 0,
 	},
-	LeftWingPoliticsTrait: genetic.Gene{
+	LeftWingPoliticsTrait: genome.Gene{
 		Desc:  "Left wing political views",
 		Score: 0,
 	},
-	RightWingPoliticsTrait: genetic.Gene{
+	RightWingPoliticsTrait: genome.Gene{
 		Desc:  "Right wing political views",
 		Score: 0,
 	},
-	ExtremeLeftPoliticsTrait: genetic.Gene{
+	ExtremeLeftPoliticsTrait: genome.Gene{
 		Desc:  "Extreme Left wing political views",
 		Score: -1,
 	},
-	ExtremeRightPoliticsTrait: genetic.Gene{
+	ExtremeRightPoliticsTrait: genome.Gene{
 		Desc:  "Extreme Right wing political views",
 		Score: -1,
 	},
-	ProblemSolverTrait: genetic.Gene{
+	ProblemSolverTrait: genome.Gene{
 		Desc:  "Problem solver",
 		Score: 1,
 	},
-	CapitalistTrait: genetic.Gene{
+	CapitalistTrait: genome.Gene{
 		Desc:  "Capitalist",
 		Score: 0,
 	},
-	SocialistTrait: genetic.Gene{
+	SocialistTrait: genome.Gene{
 		Desc:  "Socialist",
 		Score: 0,
 	},
-	HumanitarianTrait: genetic.Gene{
+	HumanitarianTrait: genome.Gene{
 		Desc:  "Humanitarian",
 		Score: 1,
 	},
-	ThrillseekerTrait: genetic.Gene{
+	ThrillseekerTrait: genome.Gene{
 		Desc:  "Thrillseeker",
 		Score: 1,
 	},
-	ExplorerTrait: genetic.Gene{
+	ExplorerTrait: genome.Gene{
 		Desc:  "Explorer",
 		Score: 1,
 	},
-	HermitTrait: genetic.Gene{
+	HermitTrait: genome.Gene{
 		Desc:  "Is a Hermit",
 		Score: 1,
 	},
-	MaleGenderTrait: genetic.Gene{
+	MaleGenderTrait: genome.Gene{
 		Desc:  "Has Male gender chomosomes XX",
 		Score: 1,
 	},
-	FemaleGenderTrait: genetic.Gene{
+	FemaleGenderTrait: genome.Gene{
 		Desc:  "Has Female gender chromosomes XY",
 		Score: 1,
 	},
-	GoodLookingTrait: genetic.Gene{
+	GoodLookingTrait: genome.Gene{
 		Desc:  "Good Looking",
 		Score: 1,
 	},
-	UglyTrait: genetic.Gene{
+	UglyTrait: genome.Gene{
 		Desc:  "Not great looking",
 		Score: -1,
 	},
-	CriminalTendancyTrait: genetic.Gene{
+	CriminalTendancyTrait: genome.Gene{
 		Desc:  "Criminal tendancies",
 		Score: -1,
 	},
-	RamblingSpeechTrait: genetic.Gene{
+	RamblingSpeechTrait: genome.Gene{
 		Desc:  "Tends to ramble",
 		Score: -1,
 	},
-	DryHumourTrait: genetic.Gene{
+	DryHumourTrait: genome.Gene{
 		Desc:  "Tends to ramble",
 		Score: -1,
 	},
-	AthleticTrait: genetic.Gene{
+	AthleticTrait: genome.Gene{
 		Desc:  "Athletic",
 		Score: 1,
 	},
-	CuteTrait: genetic.Gene{
+	CuteTrait: genome.Gene{
 		Desc:  "Cute",
 		Score: 1,
 	},
-	DarkHumourTrait: genetic.Gene{
+	DarkHumourTrait: genome.Gene{
 		Desc:  "Has Dark humour",
 		Score: 1,
 	},
-	ComedyTrait: genetic.Gene{
+	ComedyTrait: genome.Gene{
 		Desc:  "Likes all comedy",
 		Score: 1,
 	},
-}
-
-func NewHumanTraits(keys []uint64) genetic.Genes {
-	genes := genetic.NewGenes(HumanAnecdotalPhenome)
-
-	for _, gene := range keys {
-		genes.Set(gene)
-	}
-
-	return genes
 }
