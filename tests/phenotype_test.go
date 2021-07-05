@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"testing"
+	"time"
 
 	"github.com/sidewaiise/offspring/genes/phenotypes"
 	"github.com/sidewaiise/offspring/genetic"
@@ -54,46 +55,109 @@ func TestPhenotypes(t *testing.T) {
 		phenotypes.GoodLookingTrait,
 	})
 
-	t.Run("Making a baby", func(tt *testing.T) {
-		p := genetic.Population{
-			genetic.NewParent(
-				"James",
-				jamesGenes,
-				&phenotypes.HumanAnecdotalPhenome,
-			),
-			genetic.NewParent(
-				"Ayme",
-				aymeGenes,
-				&phenotypes.HumanAnecdotalPhenome,
-			),
-		}
+	type testCase struct {
+		children    int
+		generations int
+	}
 
-		children, err := p.Reproduce(*generations, *maxN)
+	tcs := map[string]testCase{
+		"making a baby": {
+			children:    *maxN,
+			generations: *generations,
+		},
+		"2 children 1 generation": {
+			children:    2,
+			generations: 1,
+		},
+		"5 children, 1 generation": {
+			children:    5,
+			generations: 1,
+		},
+		"50 children, 1 generation": {
+			children:    50,
+			generations: 1,
+		},
+		"500 children, 1 generation": {
+			children:    500,
+			generations: 1,
+		},
+		"2 children, 5 generation": {
+			children:    2,
+			generations: 5,
+		},
+		"2 children, 50 generation": {
+			children:    2,
+			generations: 50,
+		},
+		"2 children, 500 generation": {
+			children:    2,
+			generations: 500,
+		},
+		"5 children, 5 generation": {
+			children:    5,
+			generations: 5,
+		},
+		"50 children, 50 generation": {
+			children:    50,
+			generations: 50,
+		},
+		"100 children, 100 generation": {
+			children:    100,
+			generations: 100,
+		},
+	}
 
-		if err != nil {
-			tt.Fatalf("Reproduce error: %v", err)
-		}
+	for name, test := range tcs {
+		t.Run(name, func(tt *testing.T) {
+			start := time.Now()
+			p := genetic.Population{
+				genetic.NewParent(
+					"James",
+					jamesGenes,
+					&phenotypes.HumanAnecdotalPhenome,
+				),
+				genetic.NewParent(
+					"Ayme",
+					aymeGenes,
+					&phenotypes.HumanAnecdotalPhenome,
+				),
+			}
 
-		fittest := children.Fittest()
+			children, err := p.Reproduce(test.generations, test.children)
 
-		fmt.Printf("Limmer Baby: %s\n\n", fittest.Label())
-		traits, err := fittest.Traits()
-		if err != nil {
-			tt.Fatal(err)
-		}
+			duration := time.Since(start)
 
-		for _, tr := range traits {
-			fmt.Printf("\n--> %s", tr)
-		}
+			fmt.Println("---------------------------")
+			if duration.Microseconds() <= 1 {
+				fmt.Printf("Time taken: %d ns\n", duration.Nanoseconds())
+			} else {
+				fmt.Printf("Time taken: %d ms\n", duration.Milliseconds())
+			}
 
-		fmt.Printf("\n\nDue Jan 2022")
-		fmt.Printf("\n\n---------------------\n\n")
+			if err != nil {
+				tt.Fatalf("Reproduce error: %v", err)
+			}
 
-		fmt.Print("All candidate summary:\n\n")
+			fittest := children.Fittest()
 
-		for _, r := range children {
-			fmt.Printf("Name: %s, Fitness: %f\n", r.Label(), r.Fitness())
-		}
-	})
+			fmt.Printf("\nLimmer Baby: %s\n\n", fittest.Label())
+			traits, err := fittest.Traits()
+			if err != nil {
+				tt.Fatal(err)
+			}
 
+			for _, tr := range traits {
+				fmt.Printf("\n--> %s", tr)
+			}
+
+			fmt.Printf("\n\nDue Jan 2022")
+			fmt.Printf("\n\n---------------------\n\n")
+
+			fmt.Printf("All candidate summary:\n\n")
+
+			for _, r := range children {
+				fmt.Printf("Name: %s, Fitness: %f\n", r.Label(), r.Fitness())
+			}
+		})
+	}
 }

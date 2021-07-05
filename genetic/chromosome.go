@@ -178,7 +178,7 @@ func (h *Chromosome) Mutate() error {
 		if err != nil {
 			return err
 		}
-		fmt.Printf("- Mutation %s gene for %s\n", mutationAction, desc)
+		fmt.Printf("> [%s] Mutation %s gene for %s\n", h.Label(), mutationAction, desc)
 	}
 	return nil
 }
