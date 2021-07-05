@@ -9,13 +9,18 @@ const (
 	GeneByteSize = 8
 )
 
-func NewGenes(genome Genome) Genes {
+func NewGenes(genome *Genome, keys []uint64) Genes {
 	genes := make(Genes, 0)
-	for i := 0; i < len(genome); i++ {
-		if i%8 == 0 {
+	for i := 0; i < len(*genome); i++ {
+		if i%GeneByteSize == 0 {
 			genes = append(genes, 0)
 		}
 	}
+
+	for _, gene := range keys {
+		genes.Set(gene)
+	}
+
 	return genes
 }
 

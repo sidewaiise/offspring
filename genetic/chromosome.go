@@ -116,7 +116,7 @@ func (h *Chromosome) Crossover() {
 	}
 
 	// Get list of gene keys
-	h.genes = genome.NewGenes(phenotypes.HumanAnecdotalPhenome)
+	h.genes = genome.NewGenes(&phenotypes.HumanAnecdotalPhenome, []uint64{})
 	mixer := make([]uint64, len(*h.genome))
 	for gene := range *h.genome {
 		mixer = append(mixer, gene)
