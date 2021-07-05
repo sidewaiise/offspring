@@ -105,10 +105,6 @@ func TestPhenotypes(t *testing.T) {
 			children:    100,
 			generations: 100,
 		},
-		// "500 children, 500 generation": {
-		// 	children:    500,
-		// 	generations: 500,
-		// },
 	}
 
 	for name, test := range tcs {
