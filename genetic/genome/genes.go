@@ -9,7 +9,7 @@ const (
 	GeneByteSize = 8
 )
 
-func NewGenes(genome *Genome, keys []uint64) Genes {
+func NewGenes(genome *Genome, keys []uint64) *Genes {
 	genes := make(Genes, 0)
 	for i := 0; i < len(*genome); i++ {
 		if i%GeneByteSize == 0 {
@@ -21,7 +21,7 @@ func NewGenes(genome *Genome, keys []uint64) Genes {
 		genes.Set(gene)
 	}
 
-	return genes
+	return &genes
 }
 
 type Gene struct {

@@ -12,8 +12,7 @@ import (
 )
 
 var (
-	maxN        = flag.Int("maxN", 2, "Max number of children")
-	generations = flag.Int("generations", 1, "Max number of generations")
+	surprise = flag.Bool("surprise", false, "Show the surprise")
 )
 
 func TestPhenotypes(t *testing.T) {
@@ -61,11 +60,7 @@ func TestPhenotypes(t *testing.T) {
 		generations int
 	}
 
-	tcs := map[string]testCase{
-		"making a baby": {
-			children:    *maxN,
-			generations: *generations,
-		},
+	var tcs = map[string]testCase{
 		"2 children 1 generation": {
 			children:    2,
 			generations: 1,
@@ -106,6 +101,19 @@ func TestPhenotypes(t *testing.T) {
 			children:    100,
 			generations: 100,
 		},
+		"500000 children, 1 generation": {
+			children:    500000,
+			generations: 1,
+		},
+	}
+
+	if *surprise {
+		tcs = map[string]testCase{
+			"making a baby": {
+				children:    2,
+				generations: 1,
+			},
+		}
 	}
 
 	for name, test := range tcs {
@@ -128,35 +136,32 @@ func TestPhenotypes(t *testing.T) {
 			duration := time.Since(start)
 
 			fmt.Println("---------------------------")
-			if duration.Microseconds() <= 1 {
-				fmt.Printf("Time taken: %d ns\n", duration.Nanoseconds())
-			} else {
-				fmt.Printf("Time taken: %d ms\n", duration.Milliseconds())
-			}
+			fmt.Printf("Time taken: %d us\n", duration.Microseconds())
 
 			if err != nil {
 				tt.Fatalf("Reproduce error: %v", err)
 			}
 
 			fittest := children.Fittest()
-
-			fmt.Printf("\nLimmer Baby: %s\n\n", fittest.Label())
 			traits, err := fittest.Traits()
 			if err != nil {
 				tt.Fatal(err)
 			}
 
-			for _, tr := range traits {
-				fmt.Printf("\n--> %s", tr)
-			}
+			if *surprise {
+				fmt.Printf("\nLimmer Baby: %s\n\n", fittest.Label())
+				for _, tr := range traits {
+					fmt.Printf("\n--> %s", tr)
+				}
 
-			fmt.Printf("\n\nDue Jan 2022")
-			fmt.Printf("\n\n---------------------\n\n")
+				fmt.Printf("\n\nDue Jan 2022")
+				fmt.Printf("\n\n---------------------\n\n")
 
-			fmt.Printf("All candidate summary:\n\n")
+				fmt.Printf("All candidate summary:\n\n")
 
-			for _, r := range children {
-				fmt.Printf("Name: %s, Fitness: %f\n", r.Label(), r.Fitness())
+				for _, r := range children {
+					fmt.Printf("Name: %s, Fitness: %f\n", r.Label(), r.Fitness())
+				}
 			}
 		})
 	}
