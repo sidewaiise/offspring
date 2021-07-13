@@ -22,7 +22,7 @@ type Chromosomer interface {
 	Offspring(spouse Chromosomer, g int, i int) Chromosomer
 }
 
-func NewParent(name string, genes *genome.Genes, genome *genome.Genome) *Chromosome {
+func NewParent(name string, genes *genome.Genes, genome *genome.Genome) Chromosomer {
 	h := Chromosome{
 		Name:   name,
 		genes:  genes,
@@ -50,6 +50,8 @@ type Chromosome struct {
 	parents []Chromosomer
 	genome  *genome.Genome
 	genes   *genome.Genes
+
+	fitness *func(*Chromosome) float32
 }
 
 // Label gets the genes
@@ -152,9 +154,9 @@ func (h *Chromosome) Crossover() {
 }
 
 func (h *Chromosome) Mutate() error {
-	probabilityConstant := 0.01
+	probabilityConstant := 0.00001
 	for gene := range h.genes.Read(h.genome) {
-		if rand := math.Round(rand.Float64()*1000) / 1000; rand > probabilityConstant {
+		if rand := rand.Float64(); rand > probabilityConstant {
 			continue
 		}
 
@@ -164,21 +166,21 @@ func (h *Chromosome) Mutate() error {
 			return err
 		}
 
-		// mutationAction := "activated"
-		// if !h.genes.Has(gene) {
-		// 	mutationAction = "deactivated"
-		// }
+		mutationAction := "activated"
+		if !h.genes.Has(gene) {
+			mutationAction = "deactivated"
+		}
 
-		// g, err := h.genome.Gene(gene)
-		// if err != nil {
-		// 	return err
-		// }
+		g, err := h.genome.Gene(gene)
+		if err != nil {
+			return err
+		}
 
-		// desc, err := g.GetDesc()
-		// if err != nil {
-		// 	return err
-		// }
-		// fmt.Printf("> [%s] Mutation %s gene for %s\n", h.Label(), mutationAction, desc)
+		desc, err := g.GetDesc()
+		if err != nil {
+			return err
+		}
+		fmt.Printf("> [%s] Mutation %s gene for %s\n", h.Label(), mutationAction, desc)
 	}
 	return nil
 }
